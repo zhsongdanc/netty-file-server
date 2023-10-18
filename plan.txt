@@ -1,0 +1,70 @@
+期望包含的功能：
+1. 存储源(本地、分布式文件系统、对象存储、云存储、分布式数据库如mongo)
+2. 功能列表
+(1)上传下载
+(2)大文件的断点续传/分片重组
+(3)自定义传输协议（使用ftp？需要参考其他开源项目的实现）
+(4)加解密(这里可以写一种，，设计的通用一点，很方便引入其他的)
+(5)压缩与解压
+(6)文件元数据管理
+(7)（需要仔细思考）并发传输和连接池管理：实现连接池管理和并发传输机制，以优化服务器的资源利用率和吞吐量，提供更好的性能和响应速度。
+(8)访问权限和身份验证
+(9)目录功能
+(10)如何处理并发文件传输、如何处理大文件传输、如何保证文件传输的完整性和安全性？
+(11)性能监控？
+(12)日志审计？
+(13)限流限频？
+(14)
+3.参考项目
+(1)Netty-File-Transfer：这是一个基于 Netty 的文件传输系统，它使用 Netty 实现了一个简单的文件服务器和客户端。你可以在这个项目中学习到如何使用 Netty 处理文件传输。项目地址：https://github.com/luoyedaren/Netty-File-Transfer
+(2)Netty FTP Server：这是一个基于 Netty 的 FTP 服务器实现。虽然它可能比你需要的更复杂，但是你可以从中学习到如何使用 Netty 实现复杂的文件传输协议。项目地址：https://github.com/AdityaGupta1/netty-ftp-receiver
+(3)Netty Cookbook：这个项目包含了许多 Netty 的示例代码，包括文件传输。你可以在这个项目中找到一些关于如何使用 Netty 进行文件传输的示例。项目地址：https://github.com/Jotschi/netty-cookbook
+(4)Apache FTP Server: Apache FTP Server 是一个完全在 Java 中实现的 FTP 服务器。它是基于 Apache MINA，一个网络应用框架，MINA 和 Netty 都是异步网络通信框架，因此 Apache FTP Server 的设计和实现可以为你提供很好的参考。你可以在这里找到源代码：https://mina.apache.org/ftpserver-project/
+(5)vsftpd: vsftpd 是一个安全、快速、稳定的 FTP 服务器，虽然它是用 C 写的，但是它的设计理念和安全措施都值得参考。你可以在这里找到源代码：https://github.com/dagwieers/vsftpd
+(6)Nginx: Nginx 是一个高性能的 HTTP 和反向代理服务器，也可以作为一个非常有效的文件服务器。Nginx 的设计理念，特别是它的事件驱动架构，可以为你设计基于 Netty 的文件服务器提供很好的参考。你可以在这里找到源代码：https://github.com/nginx/nginx
+(7)Hadoop HDFS: Hadoop 的 HDFS 是一个分布式文件系统，设计用于存储大量数据并提供高吞吐量的数据访问。虽然 HDFS 的规模可能远超过你的需求，但是它的设计可以提供一些关于如何处理大文件和并发访问的思路。你可以在这里找到源代码：https://github.com/apache/hadoop
+(8)Minio：Minio 是一个开源的云存储服务器，它使用了 Netty 作为底层网络通信框架。你可以参考 Minio 的架构和设计，了解如何基于 Netty 实现高性能的文件服务器。
+springcloud gateway?Spring Integration？
+
+自己找的一些：
+(9)https://github.com/waylau/mongodb-file-server
+(10)https://github.com/huisongyang/fileserver
+(11)https://github.com/zhongzx8080/file-server
+
+
+模块划分：（不需要暴露服务的统一放到dependencies模块下）
+1. security模块-提供加解密功能，不需要暴露微服务（把完整性校验也放在这里？）
+2. access-controle模块-提供权限控制功能，不需要暴露微服务
+2. compress模块-提供压缩与解压功能，不需要暴露微服务
+3. 如果支持多种传输协议，怎么划分模块
+4. 是否需要core模块仅仅支持自己的协议，如果这样可能需要把上传下载单独放到一个模块
+5. storage模块-存储功能
+
+
+plan:
+一期：
+1.考虑采用什么存储
+2.自己实现文件的上传下载
+3.传输协议、完整性
+
+二期：
+1. 自己实现断点/分片
+2. 连接池和并发
+
+三期：
+1. 加密、解密
+2. 压缩
+3. 元数据管理
+4. 权限控制
+5. 目录
+
+四期：
+1. 性能监控？
+2. 日志审计？
+3. 限流限频？
+
+开源项目学习方法：
+java项目仔细看，但像hadoop这种大型项目着重看官方文档相关部分和相关核心源码
+非java项目也是重看官方文档相关部分和相关核心源码
+顺序：从简单到复杂：先写一个最简单的demo，然后看基于java的简单的项目，再重新自己完善项目，再自己思考下一步（如果有想法，自己先试一下，然后参考别人怎么做的）
+之后看大型项目或其他语言项目的实现（这个过程可能很慢，也挺难的，不用执着于无关细节，否则太花时间）提取思想，拿来使用

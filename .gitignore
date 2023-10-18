@@ -1,0 +1,17 @@
+target/
+.settings/
+.project
+.classpath
+*iml
+.idea
+out/
+classes/
+*.tmp
+.DS_Store
+*/.DS_Store
+Lincheers.log
+*/Lincheers.log
+Lincheers.log*
+.codecc
+.codecc
+*.versionsBackup
