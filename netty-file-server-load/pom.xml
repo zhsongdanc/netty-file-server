@@ -45,6 +45,18 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+
+<!--        本项目其他模块-->
+        <dependency>
+            <artifactId>netty-file-server-common</artifactId>
+            <groupId>com.demus</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
