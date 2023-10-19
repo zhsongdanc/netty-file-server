@@ -7,6 +7,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
 import lombok.extern.slf4j.Slf4j;
 
 /*
@@ -34,13 +35,14 @@ public class NettyFileServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new StringDecoder());
                             ch.pipeline().addLast(new TestServerHandler());
                         }
                     });
 
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
             log.info("Server has started!");
-            channelFuture.channel().close().sync();
+            channelFuture.channel().closeFuture().sync();
         }finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

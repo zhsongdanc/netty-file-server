@@ -7,12 +7,15 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.string.StringEncoder;
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * @Author: demussong
  * @Description:
  * @Date: 2023/10/18 19:17
  */
+@Slf4j
 public class NettyFileClient {
 
     public static final String host = "127.0.0.1";
@@ -32,13 +35,17 @@ public class NettyFileClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel channel) throws Exception {
+
+                            channel.pipeline().addLast(new StringEncoder());
                             channel.pipeline().addLast(new TestClientHandler());
                         }
                     });
 
-            ChannelFuture channelFuture = bootstrap.connect().sync();
-            channelFuture.channel().close();
+            ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
+            log.info("connected!");
+            channelFuture.channel().closeFuture().sync();
         }finally {
+            log.info("client exit !");
             nioEventLoopGroup.shutdownGracefully();
         }
     }

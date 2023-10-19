@@ -13,6 +13,8 @@ public class TestClientHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
 
-        super.channelActive(ctx);
+        ctx.channel().writeAndFlush("hello,this is demus");
+
+//        super.channelActive(ctx);
     }
 }
