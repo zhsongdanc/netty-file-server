@@ -6,15 +6,13 @@ package com.demus.load.server;
  * @Date: 2023/10/19 12:07
  */
 
-import com.demus.load.server.unil.FileUtil;
+import com.demus.common.unil.FileUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
