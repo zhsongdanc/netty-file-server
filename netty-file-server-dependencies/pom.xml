@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>netty-file-server-common</module>
+        <module>netty-file-server-storage</module>
     </modules>
 
     <properties>

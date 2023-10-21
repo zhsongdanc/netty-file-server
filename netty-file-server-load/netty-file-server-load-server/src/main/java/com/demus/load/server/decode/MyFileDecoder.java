@@ -1,5 +1,6 @@
 package com.demus.load.server.decode;
 
+import com.demus.common.constant.AppendableBytes;
 import com.demus.common.message.SimpleFileMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -31,14 +32,14 @@ public class MyFileDecoder extends MessageToMessageDecoder<ByteBuf> {
 
         int readableBytes = byteBuf.readableBytes();
         if (readableBytes < 8) {
-            log.error("reading length field, but raadable bytes = {}", readableBytes);
+            log.error("reading length field, but readable bytes = {}", readableBytes);
             return;
         }
 
         long fileSize = byteBuf.readLong();
         int fileContentSize = byteBuf.readableBytes();
         if (byteBuf.readableBytes() < fileSize) {
-            log.error("reading file content, but radable bytes = {}", fileContentSize);
+            log.error("reading file content, but readable bytes = {}", fileContentSize);
             byteBuf.resetReaderIndex();
             return;
         }

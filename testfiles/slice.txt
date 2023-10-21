@@ -1,0 +1,12 @@
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
+在Java中，可以使用System.getProperty("user.dir")来获取当前项目的相对目录。
